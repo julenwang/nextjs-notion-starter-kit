@@ -55,9 +55,14 @@
   align-items: center;
 }
 
-.copyright {
+.copyrightContainer {
   font-size: 80%;
   padding: 0.5em;
+}
+.copyright {
+}
+.copyright a:hover {
+  color: #c9510c;
 }
 
 .settings,
@@ -135,7 +140,7 @@
   .footer .social {
     order: 2;
   }
-  .footer .copyright {
+  .footer .copyrightContainer {
     order: 3;
   }
 }

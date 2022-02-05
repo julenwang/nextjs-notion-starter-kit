@@ -26,7 +26,19 @@ export const Footer: React.FC<{
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.copyright}>Copyright 2021 {config.author}</div>
+      <div className={styles.copyrightContainer}>
+        <div className={styles.copyright}>Copyright 2021 {config.author}</div>
+        <div className={styles.copyright}>
+          Powered by{' '}
+          <a
+            href='https://github.com/transitive-bullshit/nextjs-notion-starter-kit'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            nextjs-notion-starter-kit
+          </a>
+        </div>
+      </div>
 
       {hasMounted ? (
         <div className={styles.settings}>
