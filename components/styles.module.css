@@ -65,6 +65,19 @@
   color: #c9510c;
 }
 
+.copyrightContainer,
+.settings,
+.social {
+  flex: 1;
+}
+.settings {
+  display: flex;
+  justify-content: center;
+}
+.social {
+  display: flex;
+  justify-content: flex-end;
+}
 .settings,
 .social {
   user-select: none;
