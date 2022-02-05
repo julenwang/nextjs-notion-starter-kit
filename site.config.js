@@ -9,7 +9,7 @@ module.exports = {
   // basic site info (required)
   name: 'Julen.wang',
   domain: 'julen.wang',
-  author: 'julen wang',
+  author: 'Julen Wang',
 
   // open graph metadata (optional)
   description: 'Example site description',
