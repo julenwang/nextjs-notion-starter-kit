@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import cs from 'classnames'
 import { useRouter } from 'next/router'
 import { useSearchParam } from 'react-use'
@@ -12,7 +11,13 @@ import { PageBlock } from 'notion-types'
 import { Tweet, TwitterContextProvider } from 'react-static-tweets'
 
 // core notion renderer
-import { NotionRenderer, Code, Collection, CollectionRow } from 'react-notion-x'
+import { NotionRenderer } from 'react-notion-x'
+import { Code } from 'react-notion-x/build/third-party/code'
+import { Collection } from 'react-notion-x/build/third-party/collection'
+import { Equation } from 'react-notion-x/build/third-party/equation'
+import { Modal } from 'react-notion-x/build/third-party/modal'
+
+// import CollectionRow from 'react-notion-x/build/third-party/collection-row'
 
 // utils
 import { getBlockTitle } from 'notion-utils'
@@ -59,18 +64,20 @@ import styles from './styles.module.css'
 //   { ssr: false }
 // )
 
-const Equation = dynamic(() =>
-  import('react-notion-x').then((notion) => notion.Equation)
-)
+// const Equation = dynamic(() =>
+//   import('react-notion-x/build/third-party/equation').then(
+//     (pkg) => pkg.Equation
+//   )
+// )
 
 // we're now using a much lighter-weight tweet renderer react-static-tweets
 // instead of the official iframe-based embed widget from twitter
-// const Tweet = dynamic(() => import('react-tweet-embed'))
+// const Tweet = dynamic(() => import('react-tweet-embed'))Ï
 
-const Modal = dynamic(
-  () => import('react-notion-x').then((notion) => notion.Modal),
-  { ssr: false }
-)
+// const Modal = dynamic(
+//   import('react-notion-x/build/third-party/modal').then((pkg) => pkg.Modal),
+//   { ssr: false }
+// )
 
 export const NotionPage: React.FC<types.PageProps> = ({
   site,
@@ -133,7 +140,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
   const socialImage = mapNotionImageUrl(
     (block as PageBlock).format?.page_cover || config.defaultPageCover,
-    block
+    block as any
   )
 
   const socialDescription =
@@ -225,7 +232,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
           pageId === site.rootNotionPageId && 'index-page'
         )}
         components={{
-          pageLink: ({
+          PageLink: ({
             href,
             as,
             passHref,
@@ -249,12 +256,12 @@ export const NotionPage: React.FC<types.PageProps> = ({
               <a {...props} />
             </Link>
           ),
-          code: Code,
-          collection: Collection,
-          collectionRow: CollectionRow,
-          tweet: Tweet,
-          modal: Modal,
-          equation: Equation
+          Code: Code,
+          Collection: Collection,
+          // collectionRow: CollectionRow,
+          Tweet: Tweet,
+          Modal: Modal,
+          Equation: Equation
         }}
         recordMap={recordMap}
         rootPageId={site.rootNotionPageId}
